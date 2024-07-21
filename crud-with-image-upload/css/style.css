@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*error message*/
+.errors {
+    color: red;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem;
+}
+
+#add-form {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#add-form .input-group {
+    flex-grow: 1;
+    padding: 1rem;
+    display: flex;
+    align-items: end;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.352);
+    border-radius: .5rem;
+    gap: 1rem;
+}
+
+.input-group input,
+.input-group select {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+form button {
+    border-radius: .5rem;
+    flex-grow: 1.5;
+    background: #000;
+    color: white;
+    font-size: 1.3rem;
+    border: none;
+    cursor: pointer;
+}
+
+/* table style    */
+table {
+    width: 100%;
+    /*border-collapse: collapse;*/
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.352);
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+table thead {
+    background: black;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    & th {
+        color: white;
+
+    }
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+
+td {
+    text-align: center;
+}
+
+td:last-child {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit, .delete,
+.create {
+    color: white;
+    padding: .5rem;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    border-radius: .5rem;
+
+    cursor: pointer;
+}
+
+.edit {
+    background: #007bff;
+    cursor: pointer;
+}
+.create {
+    background: #28a745;
+    cursor: pointer;
+}
+
+.delete {
+    background: #dc3545;
+    cursor: pointer;
+}
+
+/* Popup style */
+/*.popup-container {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: rgba(0, 0, 0, 0.5);*/
+/*    z-index: 100;*/
+/*    scale: 0;*/
+/*    transition: all 0.3s ease-in-out;*/
+/*    opacity: 0;*/
+/*    pointer-events: none;*/
+/*    &.active {*/
+/*        scale: 1;*/
+/*        opacity: 1;*/
+/*        pointer-events: auto;*/
+/*    }*/
+/*}*/
+
+.popup-container form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    background: white;
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.452);
+}
+
+.popup-container form h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.popup-container form .input-group {
+    flex-grow: 1;
+    padding: .7rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.352);
+    border-radius: .5rem;
+    gap: 1rem;
+}
+
+.popup-container form input, .popup-container form select ,
+.popup-container form textarea {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100px;
+    flex-grow: 1;
+    font-size: 1.1rem;
+}
+
+.popup-container form button {
+    padding: .7rem;
+}
+
+.popup-container .close-btn {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    cursor: pointer;
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.5);
+    border: 2px solid #dc3545;
+    border-radius: 5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.452);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: #dc3545;
+        animation: close .7s ease-in-out 1;
+        color: white;
+    }
+
+}
+
+@keyframes close {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
