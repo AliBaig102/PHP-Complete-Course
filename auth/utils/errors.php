@@ -7,15 +7,14 @@ function error($message): void
     $errors[] = $message;
 }
 
-function error_and_redirect($errors, $url): void
+function error_and_redirect($error_type,$errors, $url): void
 {
-    $key = key($errors);
-//    convert string to url format
-    $message = urlencode($errors[$key]);
-    header("Location: $url" . "?error=" . $message . "&" . $key . "=" . $message);
+//    convert array to string
+    $errors = http_build_query($errors);
+
+    header("Location: ../$url" . "?" . $error_type . "&" . $errors);
     exit();
 }
-
 function show_errors(): void
 {
     global $errors;
