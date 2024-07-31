@@ -156,7 +156,7 @@ main .heading {
 
 .popup-container form .input-group {
     flex-grow: 1;
-    padding: .7rem;
+    padding: .4rem .7rem;
     display: flex;
     align-items: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.352);
@@ -168,6 +168,7 @@ main .heading {
     border: none;
     outline: none;
     flex-grow: 1;
+    height: 30px;
     background: transparent;
     color: var(--text-color);
 }
