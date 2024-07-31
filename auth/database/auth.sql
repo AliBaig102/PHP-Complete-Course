@@ -10,5 +10,7 @@ CREATE TABLE auth (
       code_expiration TIMESTAMP,
       is_verified BOOLEAN DEFAULT FALSE,
       reset_token VARCHAR(255),
-      token_expiration TIMESTAMP
+      token_expiration TIMESTAMP,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
