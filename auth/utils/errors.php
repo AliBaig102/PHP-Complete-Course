@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errors = [];
 
 function error($message): void
@@ -9,10 +10,10 @@ function error($message): void
 
 function error_and_redirect($error_type,$errors, $url): void
 {
-//    convert array to string
-    $errors = http_build_query($errors);
-
-    header("Location: ../$url" . "?" . $error_type . "&" . $errors);
+//    $_SESSION['errors'] = [];
+    unset($_SESSION["errors"][$error_type]);
+    $_SESSION["errors"][$error_type] = $errors;
+    header("Location:../$url");
     exit();
 }
 function show_errors(): void
