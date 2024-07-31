@@ -20,7 +20,6 @@ function validate_email($email): bool
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-;
 function validate_username($username): bool
 {
     return preg_match("/^[a-zA-Z0-9]*$/", $username);
@@ -59,5 +58,9 @@ function activeLink($url): string
     return '';
 }
 
-
+function redirect($path)
+{
+    header("Location: ../$path");
+    exit();
+}
 
