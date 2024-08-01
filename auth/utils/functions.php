@@ -58,7 +58,7 @@ function activeLink($url): string
     return '';
 }
 
-function redirect($path)
+function redirect($path): void
 {
     header("Location: ../$path");
     exit();
