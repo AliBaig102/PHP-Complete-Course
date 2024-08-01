@@ -47,7 +47,7 @@ function sendEmail($to, $subject, $message): bool
 
 ;
 
-function emailTemplate($brandName, $message, $href,$buttonText,$country): string
+function emailTemplate($brandName, $message, $href,$buttonText,$code,$country): string
 {
     return '<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
   <div style="margin:50px auto;width:70%;padding:20px 0">
@@ -56,6 +56,7 @@ function emailTemplate($brandName, $message, $href,$buttonText,$country): string
     </div>
     <p style="font-size:1.1em">Hi,</p>
     <p>' . $message . '</p>
+    <h2  style="background:#3498db;color:#fff;text-decoration:none;padding:10px 25px;display:inline-block;border-radius:5px;margin:25px 0">.' . $code . '</h2>
     <a href="' . $href . '" style="background:#3498db;color:#fff;text-decoration:none;padding:10px 25px;display:inline-block;border-radius:5px;margin:25px 0">.' . $buttonText . '</a>
     <p style="font-size:0.9em;">Regards,<br />.' . $brandName . '</p>
     <hr style="border:none;border-top:1px solid #eee" />
