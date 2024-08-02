@@ -1,10 +1,9 @@
 <?php
-require '../utils/functions.php';
+require_once dirname(__DIR__).'/utils/functions.php';
 myRequire("utils/errors.php");
 myRequire("utils/auth.php");
 myRequire("utils/mail.php");
 
-print_pre($_POST);
 $username = secure_input($_POST['username']);
 $email = secure_input($_POST['email']);
 $password = secure_input($_POST['password']);
@@ -28,17 +27,20 @@ if (empty_input($username)) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 //    Generate a 7-digit token for email verification
     $token = sprintf('%07d', mt_rand(0, 9999999));;
-    $url = $application_url . "index.php?verification_code=" . $token;
+    $url = $application_url . "index.php?verification_email=".$email."&verification_code=" . $token;
     date_default_timezone_set("Asia/Karachi");
     $code_expiration = date("Y-m-d H:i:s", strtotime("+10 minutes"));
     //    verify user by sending an email
-    $message = emailTemplate($application_name, "Welcome to " . $application_name. " " . $username . "!", $url, "Verify",$token ,"Pakistan");
-    echo $message;
-//    if (register_user($username, $email, $password,$token,$code_expiration)) {
-//
-//    } else {
-//        error_and_redirect("signup", ["username" => $username, "email" => $email, "password_error" => "Something went wrong"], "index.php");
-//    }
+    $message = emailTemplate("PHP Auth", $application_name, "Verify your email", "Click on the link below to verify your email", $token, $url, "Verify Email");
+    if (register_user($username, $email, $password, $token, $code_expiration)) {
+        if (sendEmail($email, "Verify your email", $message)) {
+            success_and_redirect("signup", ["username" => $username, "email" => $email, "message" => "Check your email to verify your account"], "index.php");
+        } else {
+            error_and_redirect("signup", ["username" => $username, "email" => $email, "message" => "Failed to send verification email"], "index.php");
+        }
+    } else {
+        error_and_redirect("signup", ["username" => $username, "email" => $email, "message" => "Failed to register user"], "index.php");
+    }
 }
 
 
