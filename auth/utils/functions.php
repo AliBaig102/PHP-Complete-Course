@@ -43,7 +43,7 @@ function myRequire($path): void
 {
     $root = dirname(__DIR__) . "/";
     $path = $root . $path;
-    require $path;
+    require_once $path;
 }
 
 //$url_parts = explode("/", $_SERVER['REQUEST_URI']);
@@ -60,7 +60,13 @@ function activeLink($url): string
 
 function redirect($path): void
 {
-    header("Location: ../$path");
-    exit();
+    global $application_url;
+    echo "<script>window.location.href = '$application_url$path'</script>";
 }
 
+function success_and_redirect($success_type,$success,$path):void
+{
+    unset($_SESSION["success"][$success_type]);
+    $_SESSION["success"][$success_type] = $success;
+    redirect($path);
+}
