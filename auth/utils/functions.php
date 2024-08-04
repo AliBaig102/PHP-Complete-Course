@@ -64,9 +64,20 @@ function redirect($path): void
     echo "<script>window.location.href = '$application_url$path'</script>";
 }
 
-function success_and_redirect($success_type,$success,$path):void
+function success_and_redirect($success_type, $success, $path): void
 {
     unset($_SESSION["success"][$success_type]);
     $_SESSION["success"][$success_type] = $success;
+    redirect($path);
+}
+
+function success_toast($message, $path): void
+{
+    $_SESSION["toast"]["success"] = $message;
+    redirect($path);
+}
+function error_toast($message, $path): void
+{
+    $_SESSION["toast"]["error"] = $message;
     redirect($path);
 }
