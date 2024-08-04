@@ -28,18 +28,31 @@ if (isset($_SESSION["success"]['verify'])) {
     }
     unset($_SESSION["success"]['verify']);
 }
+
+$email = "";
+$email_error = "";
+$password_error = "";
+if (isset($_SESSION["errors"]['login'])) {
+    $activeClass = "active";
+    $email_error = $_SESSION["errors"]['login']['email_error'] ?? "";
+    $email = $_SESSION["errors"]['login']['email'] ?? "";
+    $password_error = $_SESSION["errors"]['login']['password_error'] ?? "";
+    unset($_SESSION["errors"]['login']);
+}
 ?>
 <div class="popup-container login-popup  <?php echo $activeClass; ?>">
-    <form action="">
+    <form action="actions/login.php" method="post">
         <h3>Login</h3>
         <div class="input-group">
-            <label for="username"><i class="fas fa-user"></i></label>
-            <input type="text" name="username" id="username" placeholder="Username">
+            <label for="email"><i class="fas fa-envelope"></i></label>
+            <input type="text" name="email" id="email" value="<?php echo $email; ?>" placeholder="Enter email">
         </div>
+        <span class="error"><?= $email_error; ?></span>
         <div class="input-group">
             <label for="password"><i class="fas fa-lock"></i></label>
             <input type="password" name="password" id="password" placeholder="Password">
         </div>
+        <span class="error"><?= $password_error; ?></span>
         <strong style="cursor: pointer" class="forgot-password-btn">Forgot password?</strong>
         <button type="submit">Login</button>
 
