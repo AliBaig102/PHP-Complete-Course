@@ -1,8 +1,5 @@
 <?php
-namespace Database;
-require_once dir(__DIR__)."/database/Connection.php";
-
-
+require_once dirname(__DIR__)."/database/Connection.php";
 trait Response
 {
     private function response($status, $message, $data = null):array

@@ -1,8 +1,5 @@
 <?php
 
-namespace Database;
-use PDO;
-use PDOException;
 
 class Connection
 {
@@ -10,15 +7,15 @@ class Connection
     private string $user = "root";
     private string $pass = "";
     private string $db = "crud";
-    protected PDO $connection;
+    protected PDO $pdo;
 
     public function __construct()
     {
         try {
             // connection DSN
             // mysql:host=localhost;dbname=crud
-            $this->connection = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }

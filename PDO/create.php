@@ -13,7 +13,7 @@
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Add a New User</h2>
 
     <!-- Form -->
-    <form>
+    <form method="post">
         <!-- Name Input -->
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -35,18 +35,27 @@
                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
         </div>
 
-        <!-- Confirm Password Input -->
-        <div class="mb-4">
-            <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-        </div>
         <!-- Submit Button -->
-        <button type="submit"
+        <button type="submit" name="submit"
                 class="w-full py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
             Add User
         </button>
     </form>
+    <?php
+    require_once "classes/User.php";
+    $user_obj=new User();
+    if (isset($_POST['submit'])) {
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+         $result=$user_obj->createUser($name, $email, $password);
+        if ($result['status'] == "success") {
+            header("Location: index.php");
+        } else {
+            echo $result['message'];
+        }
+    }
+    ?>
 </div>
 </body>
 </html>
